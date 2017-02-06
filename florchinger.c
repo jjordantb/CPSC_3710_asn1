@@ -57,6 +57,7 @@ void CallBackRenderScene(void)
 
    // Clear the color and depth buffers.
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+   glDepthFunc(GL_LEQUAL);
 
    // OK, let's start drawing our planer quads.
    glBegin(GL_QUADS);
@@ -65,7 +66,7 @@ void CallBackRenderScene(void)
    glNormal3f( 0.0f, 0.0f,-1.0f);
    glColor4f(0.0,0.9,0.0,1.0);
    glTexCoord2f(0.995f, 0.005f); glVertex3f(-1.0f, -1.0f, -1.0f);
-   glTexCoord2f(2.995f, 2.995f); glVertex3f(-1.0f,  1.0f, -1.0f);
+   glTexCoord2f(0.005f, 0.995f); glVertex3f(-1.0f,  1.0f, -1.0f);
    glTexCoord2f(0.005f, 0.995f); glVertex3f( 1.0f,  1.0f, -1.0f);
    glTexCoord2f(0.005f, 0.005f); glVertex3f( 1.0f, -1.0f, -1.0f);
 
@@ -93,6 +94,22 @@ void CallBackRenderScene(void)
    glTexCoord2f(0.995f, 0.005f); glVertex3f(-1.0f, -1.0f,  1.0f);
    glTexCoord2f(0.995f, 0.995f); glVertex3f(-1.0f,  1.0f,  1.0f);
    glTexCoord2f(0.005f, 0.995f); glVertex3f(-1.0f,  1.0f, -1.0f);
+
+   // top
+   glNormal3f(0.0f, 1.0f, 0.0f);
+   glColor4f(0.9,0.0,0.9,1.0);
+   glTexCoord2f(0.005f, 0.995f); glVertex3f(-1.0f, 1.0f, -1.0f);
+   glTexCoord2f(0.995f, 0.995f); glVertex3f(1.0f, 1.0f,  -1.0f);
+   glTexCoord2f(0.995f, 0.995f); glVertex3f(1.0f,  1.0f,  1.0f);
+   glTexCoord2f(0.995f, 0.995f); glVertex3f(-1.0f,  1.0f, 1.0f);
+
+   //bottom
+   glNormal3f(0.0f, -1.0f, 0.0f);
+   glColor4f(0.0,0.9,0.9,1.0);
+   glTexCoord2f(0.005f, 0.005f); glVertex3f(-1.0f, -1.0f, -1.0f);
+   glTexCoord2f(0.005f, 0.995f); glVertex3f(1.0f, -1.0f,  -1.0f);
+   glTexCoord2f(0.995f, 0.005f); glVertex3f(1.0f,  -1.0f,  1.0f);
+   glTexCoord2f(0.995f, 0.995f); glVertex3f(-1.0f,  -1.0f, 1.0f);
 
    // All polygons have been drawn.
    glEnd();
@@ -187,6 +204,12 @@ void MyInit(int Width, int Height)
    // Depth to clear depth buffer to; type of test.
    glClearDepth(1.0);
    glDepthFunc(GL_LESS);
+
+   // ENABLE DEPTH
+    //glDepthMask(GL_TRUE);
+    //glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+    //glEnable(GL_DEPTH_TEST);
+   // ENABLE DEPTH
 
    // Enables Smooth Color Shading; try GL_FLAT for (lack of) fun.
    glShadeModel(GL_SMOOTH);
