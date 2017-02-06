@@ -57,30 +57,29 @@ void CallBackRenderScene(void)
 
    // Clear the color and depth buffers.
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-   glDepthFunc(GL_LEQUAL);
 
    // OK, let's start drawing our planer quads.
    glBegin(GL_QUADS);
 
    // Far face.  Green, 50% opaque, non-uniform texture cooridinates.
-   glNormal3f( 0.0f, 0.0f,-1.0f);
-   glColor4f(0.0,0.9,0.0,1.0);
+   glNormal3f(0.0f, 0.0f, -1.0f);
+   glColor4f(0.0, 0.9, 0.0, 0.5);
    glTexCoord2f(0.995f, 0.005f); glVertex3f(-1.0f, -1.0f, -1.0f);
-   glTexCoord2f(0.005f, 0.995f); glVertex3f(-1.0f,  1.0f, -1.0f);
+   glTexCoord2f(2.995f, 2.995f); glVertex3f(-1.0f,  1.0f, -1.0f);
    glTexCoord2f(0.005f, 0.995f); glVertex3f( 1.0f,  1.0f, -1.0f);
    glTexCoord2f(0.005f, 0.005f); glVertex3f( 1.0f, -1.0f, -1.0f);
 
    // Right face
-   glNormal3f( 1.0f, 0.0f, 0.0f);
-   glColor4f(0.9,0.0,0.0,1.0);
+   glNormal3f(1.0f, 0.0f, 0.0f);
+   glColor4f(0.9, 0.0, 0.0, 0.5);
    glTexCoord2f(0.995f, 0.005f); glVertex3f( 1.0f, -1.0f, -1.0f);
    glTexCoord2f(0.995f, 0.995f); glVertex3f( 1.0f,  1.0f, -1.0f);
    glTexCoord2f(0.005f, 0.995f); glVertex3f( 1.0f,  1.0f,  1.0f);
    glTexCoord2f(0.005f, 0.005f); glVertex3f( 1.0f, -1.0f,  1.0f);
 
    // Front face; offset.  Multi-colored, 50% opaque.
-   glNormal3f( 0.0f, 0.0f, 1.0f);
-   glColor4f(0.0,0.0,0.9,1.0);
+   glNormal3f(0.0f, 0.0f, 1.0f);
+   glColor4f(0.0, 0.0, 0.9, 0.5);
    glTexCoord2f( 0.005f, 0.005f); glVertex3f(-1.0f, -1.0f,  1.0f);
    glTexCoord2f( 0.995f, 0.005f); glVertex3f( 1.0f, -1.0f,  1.0f);
    glTexCoord2f( 0.995f, 0.995f); glVertex3f( 1.0f,  1.0f,  1.0f);
@@ -89,7 +88,7 @@ void CallBackRenderScene(void)
 
    // Left Face; offset.  Yellow, varying levels of opaque.
    glNormal3f(-1.0f, 0.0f, 0.0f);
-   glColor4f(0.9,0.9,0.0,1.0);
+   glColor4f(0.9, 0.9, 0.0, 0.5);
    glTexCoord2f(0.005f, 0.005f); glVertex3f(-1.0f, -1.0f, -1.0f);
    glTexCoord2f(0.995f, 0.005f); glVertex3f(-1.0f, -1.0f,  1.0f);
    glTexCoord2f(0.995f, 0.995f); glVertex3f(-1.0f,  1.0f,  1.0f);
@@ -97,7 +96,7 @@ void CallBackRenderScene(void)
 
    // top
    glNormal3f(0.0f, 1.0f, 0.0f);
-   glColor4f(0.9,0.0,0.9,1.0);
+   glColor4f(0.9, 0.0 ,0.9 ,0.5);
    glTexCoord2f(0.005f, 0.995f); glVertex3f(-1.0f, 1.0f, -1.0f);
    glTexCoord2f(0.995f, 0.995f); glVertex3f(1.0f, 1.0f,  -1.0f);
    glTexCoord2f(0.995f, 0.995f); glVertex3f(1.0f,  1.0f,  1.0f);
@@ -105,7 +104,7 @@ void CallBackRenderScene(void)
 
    //bottom
    glNormal3f(0.0f, -1.0f, 0.0f);
-   glColor4f(0.0,0.9,0.9,1.0);
+   glColor4f(0.0, 0.9, 0.9, 0.5);
    glTexCoord2f(0.005f, 0.005f); glVertex3f(-1.0f, -1.0f, -1.0f);
    glTexCoord2f(0.005f, 0.995f); glVertex3f(1.0f, -1.0f,  -1.0f);
    glTexCoord2f(0.995f, 0.005f); glVertex3f(1.0f,  -1.0f,  1.0f);
@@ -199,6 +198,8 @@ void CallBackResizeScene(int Width, int Height)
 void MyInit(int Width, int Height)
 {
    // Color to clear color buffer to.
+  //  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  //  glEnable( GL_BLEND );
    glClearColor(0.1f, 0.1f, 0.1f, 0.0f);
 
    // Depth to clear depth buffer to; type of test.
@@ -206,9 +207,9 @@ void MyInit(int Width, int Height)
    glDepthFunc(GL_LESS);
 
    // ENABLE DEPTH
-    //glDepthMask(GL_TRUE);
-    //glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-    //glEnable(GL_DEPTH_TEST);
+  //  glDepthMask(GL_TRUE);
+  //  glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+  //  glEnable(GL_DEPTH_TEST);
    // ENABLE DEPTH
 
    // Enables Smooth Color Shading; try GL_FLAT for (lack of) fun.
